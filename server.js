@@ -1,26 +1,23 @@
-try {
-    const { loadEnvFile } = require('node:process');
-    loadEnvFile();
-} catch (error) {
-    console.log("Corriendo en producción o archivo .env no encontrado.");
-}
-
+const { loadEnvFile } = require('node:process');
 const express = require('express');
 const animalsRouter = require('./routes/animals');
+
+if (process.env.NODE_ENV !== 'production') {
+  loadEnvFile('.env');
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Rutas
-app.use('/api/animals', animalsRouter);
-
 app.get('/', (req, res) => {
-    res.json({
-        message: 'Animals API',
-        endpoints: { animals: '/api/animals' }
-    });
+  res.json({ 
+    message: 'Animals API',
+    endpoints: {
+      animals: '/api/animals'
+    }
+  });
 });
 
 app.use((req, res) => {
