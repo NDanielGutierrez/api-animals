@@ -3,7 +3,7 @@ const express = require('express');
 const animalsRouter = require('./routes/animals');
 
 
-if (process.env.NODE_ENV !== 'production') {loadEnvFile('.env');}
+if (process.env.NODE_ENV !== 'production') {require('.env').config();}
 const app = express();
 const PORT = process.env.PORT || 3000;
 
