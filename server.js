@@ -1,9 +1,14 @@
-const { loadEnvFile } = require('node:process');
+
 const express = require('express');
 const animalsRouter = require('./routes/animals');
 
 
-if (process.env.NODE_ENV !== 'production') {require('.env').config();}
+try {
+    const { loadEnvFile } = require('node:process');
+    loadEnvFile();
+} catch (error) {
+    console.log("Ambiente de producción detectado o archivo .env ausente. Usando variables del sistema.");
+}
 const app = express();
 const PORT = process.env.PORT || 3000;
 
