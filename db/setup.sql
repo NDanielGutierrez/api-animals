@@ -1,4 +1,4 @@
--- Active: 1781104773740@@acela.proxy.rlwy.net@57123@railway@public@public
+-- Active: 1781107188029@@switchyard.proxy.rlwy.net@10261@railway@public
 -- Active: 1780953484038@@127.0.0.1@5432@animals_db
 CREATE TABLE animals (
   id SERIAL PRIMARY KEY,
